@@ -1,11 +1,8 @@
 import os
 from torch import nn, optim
 import torch
-from torch.autograd import backward
 from torch.utils.data import DataLoader
 import torchvision
-from Data import CryptoPunkDataSet, ImageDataSet
-from Net import Discriminator, Geneartor, WeightsInit
 from data import *
 from net import *
 import numpy as np
@@ -66,6 +63,8 @@ if __name__ == '__main__':
 
             ## Train with all-real batch
             discriminatorNet.zero_grad()
+
+            print(cryptoPunkImage)
             
             
             
