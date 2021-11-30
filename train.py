@@ -1,7 +1,6 @@
 import os
 from torch import nn, optim
 import torch
-from torch._C import device
 from torch.autograd import backward
 from torch.utils.data import DataLoader
 import torchvision
