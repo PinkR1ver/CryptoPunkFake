@@ -1,6 +1,5 @@
 from typing import Generator
 import torch
-from torch._C import device, strided
 from torch.functional import norm
 import torch.nn as nn
 from torch.nn.modules.conv import Conv2d
