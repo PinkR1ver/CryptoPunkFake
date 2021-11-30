@@ -15,7 +15,7 @@ else:
     print('Using CPU')
 
 basepath = f'/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
-batchSize = 4
+batchSize = 8
 imageSize = 64
 
 #Number of Channels
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     cryptoPunkDataLoader = DataLoader(cryptoPunkDataSet, batch_size=batchSize, shuffle=True)
 
 
-    generatorNet = Geneartor().to(device)
+    generatorNet = Generator().to(device)
     discriminatorNet = Discriminator().to(device)
 
     generatorNet.apply(WeightsInit)
@@ -64,7 +64,8 @@ if __name__ == '__main__':
             ## Train with all-real batch
             discriminatorNet.zero_grad()
 
-            print(cryptoPunkImage)
+            output = discriminatorNet(cryptoPunkImage)
+
             
             
             
