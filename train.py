@@ -64,7 +64,7 @@ if __name__ == '__main__':
             discriminatorNet.zero_grad()
 
             realImage = cryptoPunkImage[0].to(device)
-
+            
             BSize = realImage.size(0)
             label = torch.full((BSize,),readLabel, dtype=torch.float, device=device)
             output = discriminatorNet(realImage)

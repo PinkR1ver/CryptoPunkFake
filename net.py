@@ -91,3 +91,14 @@ class Generator(nn.Module):
 
     def forward(self, input):
         return self.main(input)
+
+
+if __name__ == '__main__':
+    x = torch.randn(1, 4, 64, 64)
+    net = Discriminator()
+    print(net(x).shape)
+
+    x = torch.tensor([1, 2, 3, 4])
+    print(f'{x} & x.shape:{x.shape}')
+    torch.unsqueeze(x, 0)
+    print(f'{x} & x.shape:{x.shape}')
