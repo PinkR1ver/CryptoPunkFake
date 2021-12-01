@@ -16,7 +16,7 @@ import torchvision.transforms as transforms
 nz = 100
 
 # Number of Channels
-nc = 3
+nc = 4
 
 # Size of feature maps in generator
 ngf = 64

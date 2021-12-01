@@ -19,7 +19,7 @@ batchSize = 8
 imageSize = 64
 
 #Number of Channels
-nc = 3
+nc = 4
 
 #Size of z latent vector, aka size of generator input
 nz = 100
@@ -57,16 +57,18 @@ if __name__ == '__main__':
     while True:
 
         for i, cryptoPunkImage in enumerate(cryptoPunkDataLoader):
-            cryptoPunkImage = cryptoPunkImage.to(device)
             
             # (1) Update Disciminator Net: Maximize log(D(x)) + log(1-D(G(z)))
 
             ## Train with all-real batch
             discriminatorNet.zero_grad()
 
-            output = discriminatorNet(cryptoPunkImage)
+            realImage = cryptoPunkImage[0].to(device)
 
-            
+            BSize = realImage.size(0)
+            label = torch.full((BSize,),readLabel, dtype=torch.float, device=device)
+            output = discriminatorNet(realImage)
+            #print(output.size())
             
             
 
