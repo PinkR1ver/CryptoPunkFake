@@ -25,6 +25,8 @@ ngf = 64
 ndf = 64
 
 # custom weights initialization called on netG and netD
+
+
 def WeightsInit(m):
     classname = m.__class__.__name__
     if classname.find('Conv') != -1:
@@ -32,7 +34,6 @@ def WeightsInit(m):
     elif classname.find('BatchNorm') != -1:
         nn.init.normal_(m.weight.data, 1.0, 0.02)
         nn.init.constant_(m.bias.data, 0)
-
 
 
 class Discriminator(nn.Module):
@@ -98,7 +99,8 @@ if __name__ == '__main__':
     net = Discriminator()
     print(net(x).shape)
 
-    x = torch.tensor([1, 2, 3, 4])
+    x = torch.tensor([[[1, 2, 3, 4], [1, 2, 3, 4]],
+                     [[1, 2, 3, 4], [1, 2, 3, 4]]])
     print(f'{x} & x.shape:{x.shape}')
     torch.unsqueeze(x, 0)
     print(f'{x} & x.shape:{x.shape}')
