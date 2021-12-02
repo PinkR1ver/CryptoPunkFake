@@ -102,5 +102,5 @@ if __name__ == '__main__':
     x = torch.tensor([[[1, 2, 3, 4], [1, 2, 3, 4]],
                      [[1, 2, 3, 4], [1, 2, 3, 4]]])
     print(f'{x} & x.shape:{x.shape}')
-    torch.unsqueeze(x, 0)
+    x = torch.unsqueeze(x, 0)
     print(f'{x} & x.shape:{x.shape}')
