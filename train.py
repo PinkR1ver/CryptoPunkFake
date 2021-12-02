@@ -16,7 +16,7 @@ else:
 
 basePath = r'C:\Users\83549\Github Projects\CryptoPunkFake\imgs'
 weightPath = r'C:\Users\83549\Github Projects\CryptoPunkFake\params'
-batchSize = 24
+batchSize = 64
 imageSize = 64
 
 #Number of Channels
