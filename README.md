@@ -3,6 +3,7 @@ You can use this project to generate your own cryptopunk without money 😂
 Just for fun :-D
 
 ## File structure
+```
 .
 ├── imgs
 │   ├── 1.png
@@ -21,6 +22,7 @@ Just for fun :-D
 ├── train.py
 ├── utils.py
 └── README.md
+```
 
 ## Quick up
 What you need to change is just the path in train.py and results.py
