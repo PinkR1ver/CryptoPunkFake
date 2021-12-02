@@ -114,7 +114,7 @@ if __name__ == '__main__':
             optimizerG.step()
 
             if i % 5 == 0:
-                print(f'epoch:{epoch},prograss:{i}\{len(cryptoPunkDataLoader)}\tLoss_D:{errD.item()}\tLoss_G{errG.item()}')
+                print(f'epoch:{epoch},prograss:{i}\{len(cryptoPunkDataLoader)}\tLoss_D:{errD.item()}\tLoss_G:{errG.item()}')
                 print(f'D(x):{Dx}\tD(G(z)):{DG_z1}/{DG_z2}')
             
             if i% 50 == 0:
