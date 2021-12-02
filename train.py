@@ -58,18 +58,55 @@ if __name__ == '__main__':
 
         for i, cryptoPunkImage in enumerate(cryptoPunkDataLoader):
             
-            # (1) Update Disciminator Net: Maximize log(D(x)) + log(1-D(G(z)))
+            ### (1) Update Disciminator Net: Maximize log(D(x)) + log(1-D(G(z)))
 
             ## Train with all-real batch
             discriminatorNet.zero_grad()
 
-            realImage = cryptoPunkImage[0].to(device)
-            realImage = torch.unsqueeze(realImage, 0)
+            realImage = cryptoPunkImage.to(device)
+            # realImage = torch.unsqueeze(realImage, 0)
 
-            BSize = realImage.size(0)
-            label = torch.full((BSize,),readLabel, dtype=torch.float, device=device)
-            output = discriminatorNet(realImage)
-            print(output.size())
+            BatchSize = realImage.size(0)
+            label = torch.full((BatchSize,),readLabel, dtype=torch.float, device=device)
+            output = discriminatorNet(realImage).view(-1)
+            #print(f'{output.shape} & {label.shape}')
+            #size := batchSize
+            errDReal = criterion(output, label)
+            errDReal.backward()
+            Dx = output.mean().item()
+
+
+            ## Train with all-fake batch
+            # Generate batch of latent vectors
+            noise = torch.randn(BatchSize, nz, 1, 1, device=device)
+            fakeImage = generatorNet(noise)
+
+            #print(fakeImage.shape) fakeImage.shape:[BatchSize, channel, image_height, image_weight]
+            label.fill_(fakeLabel)
+            output = discriminatorNet(fakeImage.detach()).view(-1)
+            errDFake = criterion(output, label)
+            errDFake.backward()
+            DG_z1 = output.mean().item()
+            errD = errDReal + errDFake
+            optimizerD.step()
+
+            ### (2) Update G network maximize log(D(G(z)))
+            
+            generatorNet.zero_grad()
+            label.fill_(readLabel)
+            output = discriminatorNet(fakeImage).view(-1)
+            errG = criterion(output, label)
+            errG.backward()
+            DG_z2 = output.mean().item()
+            optimizerG.step()
+
+            if i % 50 == 0:
+                print(f'epoch:{epoch},prograss:{i}\{len(cryptoPunkDataLoader)}\tLoss_D:{errD.item()}\tLoss_G{errG.item()}')
+                print(f'D(x):{Dx}\tD(G(z)):{DG_z1}/{DG_z2}')
+
+
+    epoch += 1
+
             
             
 
