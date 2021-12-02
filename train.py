@@ -14,7 +14,7 @@ else:
     device = 'cpu'
     print('Using CPU')
 
-basePath = f'/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
+basePath = '/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
 weightPath = '/home/pinkr1ver/Documents/Github Projects/GAN/params'
 batchSize = 8
 imageSize = 64
