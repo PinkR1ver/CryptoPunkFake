@@ -119,7 +119,7 @@ if __name__ == '__main__':
             
             if i% 50 == 0:
                 torch.save(generatorNet.state_dict(), os.path.join(weightPath, 'Generator.pth'))
-                torch.save(discriminatorNet.state_dict(), os.path.join(weightPath, 'Discrimnator.pth'))
+                torch.save(discriminatorNet.state_dict(), os.path.join(weightPath, 'Discriminator.pth'))
 
 
         epoch += 1
