@@ -48,7 +48,7 @@ if __name__ == '__main__':
         print("Generator:Loading Weight Failed")
 
     if os.path.exists(os.path.join(weightPath, 'Discriminator.pth')):
-            discriminatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Discriminator.pth')))
+        discriminatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Discriminator.pth')))
         print("Discriminator:Loading Weight Success")
     else:
         print("Discriminator:Loading Weight Failed")
