@@ -14,9 +14,9 @@ else:
     device = 'cpu'
     print('Using CPU')
 
-basePath = '/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
-weightPath = '/home/pinkr1ver/Documents/Github Projects/GAN/params'
-batchSize = 8
+basePath = r'C:\Users\83549\Github Projects\CryptoPunkFake\imgs'
+weightPath = r'C:\Users\83549\Github Projects\CryptoPunkFake\params'
+batchSize = 24
 imageSize = 64
 
 #Number of Channels

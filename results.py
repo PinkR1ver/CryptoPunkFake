@@ -11,8 +11,8 @@ else:
     device = 'cpu'
     print('Using CPU')
 
-weightPath = '/home/pinkr1ver/Documents/Github Projects/GAN/params'
-savePath = '/home/pinkr1ver/Documents/Github Projects/GAN/results'
+weightPath = r'C:\Users\83549\Github Projects\CryptoPunkFake\params'
+savePath = r'C:\Users\83549\Github Projects\CryptoPunkFake\results'
 
 nz = 100
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         #print(noise)
         Results = generatorNet(noise)
         
-        torchvision.utils.save_image(Results, f'{savePath}/{i}.png')
+        torchvision.utils.save_image(Results, f'{savePath}\\{i}.png')
 
 
     
