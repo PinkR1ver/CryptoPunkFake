@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     for i in range(1, nImages):
         noise = torch.randn(1, nz, 1, 1, device=device)
-        print(noise)
+        #print(noise)
         Results = generatorNet(noise)
         
         torchvision.utils.save_image(Results, f'{savePath}/{i}.png')
