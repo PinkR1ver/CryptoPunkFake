@@ -14,7 +14,8 @@ else:
     device = 'cpu'
     print('Using CPU')
 
-basepath = f'/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
+basePath = f'/home/pinkr1ver/Documents/Github Projects/GAN/imgs'
+weightPath = '/home/pinkr1ver/Documents/Github Projects/GAN/params'
 batchSize = 8
 imageSize = 64
 
@@ -33,15 +34,27 @@ lr = 0.0002
 beta1 = 0.5
 
 if __name__ == '__main__':
-    cryptoPunkDataSet = ImageDataSet(basepath)
+    cryptoPunkDataSet = ImageDataSet(basePath)
     cryptoPunkDataLoader = DataLoader(cryptoPunkDataSet, batch_size=batchSize, shuffle=True)
 
 
     generatorNet = Generator().to(device)
     discriminatorNet = Discriminator().to(device)
 
-    generatorNet.apply(WeightsInit)
-    discriminatorNet.apply(WeightsInit)
+    if os.path.exists(os.path.join(weightPath, 'Generator.pth')):
+        generatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Generator.pth')))
+        print("Generator:Loading Weight Success")
+    else:
+        print("Generator:Loading Weight Failed")
+
+    if os.path.exists(os.path.join(weightPath, 'Discriminator.pth')):
+            discriminatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Discriminator.pth')))
+        print("Discriminator:Loading Weight Success")
+    else:
+        print("Discriminator:Loading Weight Failed")
+
+    #generatorNet.apply(WeightsInit)
+    #discriminatorNet.apply(WeightsInit)
 
     
     criterion = nn.BCELoss()
@@ -100,9 +113,13 @@ if __name__ == '__main__':
             DG_z2 = output.mean().item()
             optimizerG.step()
 
-            if i % 50 == 0:
+            if i % 5 == 0:
                 print(f'epoch:{epoch},prograss:{i}\{len(cryptoPunkDataLoader)}\tLoss_D:{errD.item()}\tLoss_G{errG.item()}')
                 print(f'D(x):{Dx}\tD(G(z)):{DG_z1}/{DG_z2}')
+            
+            if i% 50 == 0:
+                torch.save(generatorNet.state_dict(), os.path.join(weightPath, 'Generator.pth'))
+                torch.save(discriminatorNet.state_dict(), os.path.join(weightPath, 'Discrimnator.pth'))
 
 
     epoch += 1
