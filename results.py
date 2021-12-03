@@ -21,7 +21,7 @@ if __name__ == '__main__':
     generatorNet = Generator().to(device)
     generatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Generator.pth')))
 
-    nImages = 100
+    nImages = 500
 
     for i in range(1, nImages):
         noise = torch.randn(1, nz, 1, 1, device=device)
