@@ -30,6 +30,7 @@ What you need to change is just the path in train.py and results.py
 ## Results(You can  check the dir 'results')
 Now:😂
 ![FakeCryptopunk](results/1.png)
+<!--
 ![FakeCryptopunk](results/2.png)
 ![FakeCryptopunk](results/3.png)
 ![FakeCryptopunk](results/4.png)
@@ -52,3 +53,4 @@ Now:😂
 ![FakeCryptopunk](results/21.png)
 ![FakeCryptopunk](results/22.png)
 ![FakeCryptopunk](results/23.png)
+-->
