@@ -47,14 +47,16 @@ if __name__ == '__main__':
     else:
         print("Generator:Loading Weight Failed")
 
+    
     if os.path.exists(os.path.join(weightPath, 'Discriminator.pth')):
         discriminatorNet.load_state_dict(torch.load(os.path.join(weightPath, 'Discriminator.pth')))
         print("Discriminator:Loading Weight Success")
     else:
         print("Discriminator:Loading Weight Failed")
 
-    #generatorNet.apply(WeightsInit)
-    #discriminatorNet.apply(WeightsInit)
+    # generatorNet.apply(WeightsInit)
+    
+    # discriminatorNet.apply(WeightsInit)
 
     
     criterion = nn.BCELoss()
